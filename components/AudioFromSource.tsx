@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import { View, StyleSheet, Button } from "react-native";
 import { Audio } from "expo-av";
 
-export default function AudioFromSource() {
+interface AudioFromSourceProps {
+  audio: any;
+}
+
+export default function AudioFromSource({ audio }: AudioFromSourceProps) {
   const [sound, setSound] = useState<Audio.Sound>();
 
   async function playSound() {
     console.log("Loading Sound");
-    const { sound } = await Audio.Sound.createAsync(require("../assets/A.wav"));
+    const { sound } = await Audio.Sound.createAsync(audio);
     setSound(sound);
 
     console.log("Playing Sound");
@@ -15,10 +19,10 @@ export default function AudioFromSource() {
   }
 
   async function stopSound() {
-    const { sound } = await Audio.Sound.createAsync(require("../assets/A.wav"));
-    setSound(sound);
-
-    await sound.stopAsync();
+    if (sound) {
+      console.log("Stopping Sound");
+      await sound.stopAsync();
+    }
   }
 
   useEffect(() => {

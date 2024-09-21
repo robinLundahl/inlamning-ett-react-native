@@ -1,9 +1,10 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigators/RootStackNavigator";
 import { chords } from "../data";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Audio } from "expo-av";
-import AudioFromSource from "../components/Audio";
+import AudioFromSource from "../components/AudioFromSource";
+import { Image } from "expo-image";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Details">;
 
@@ -14,8 +15,8 @@ export default function DetailsScreen({ route }: Props) {
   return (
     <View style={styles.container}>
       <Text style={{ padding: 30, fontSize: 20 }}>{chord?.title}</Text>
-      <Image src={chord?.image} style={{ height: 200, width: 200 }}></Image>
-      <AudioFromSource />
+      <Image source={chord?.image} style={{ height: 200, width: 200 }}></Image>
+      {chord?.audio && <AudioFromSource audio={chord.audio} />}
     </View>
   );
 }
