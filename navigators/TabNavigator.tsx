@@ -3,6 +3,7 @@ import { HomeScreen } from "../screens/HomeScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import React from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 export type TabParamList = {
   Home: undefined;
@@ -19,7 +20,7 @@ export default function TabNavigator() {
         component={HomeScreen}
         options={{
           tabBarIcon: (props) => (
-            <MaterialIcons name="home" size={24} color={"black"} />
+            <MaterialCommunityIcons name="home" size={24} color="black" />
           ),
         }}
       />
@@ -28,7 +29,11 @@ export default function TabNavigator() {
         component={FavoritesScreen}
         options={{
           tabBarIcon: (props) => (
-            <MaterialIcons name="favorite" size={24} color={"black"} />
+            <MaterialCommunityIcons
+              name="guitar-pick"
+              size={24}
+              color="black"
+            />
           ),
         }}
       />
