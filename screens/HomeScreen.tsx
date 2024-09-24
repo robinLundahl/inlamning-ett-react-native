@@ -55,7 +55,7 @@ const s = StyleSheet.create({
   },
   button: {
     flex: 1,
-    backgroundColor: "pink", // Rosa bakgrund
+    backgroundColor: "skyblue", // Rosa bakgrund
     padding: 20,
     margin: 10, // Marginal runt varje knapp för att skapa mer utrymme
     borderRadius: 5, // Runda hörn

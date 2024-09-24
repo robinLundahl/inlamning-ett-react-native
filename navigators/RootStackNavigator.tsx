@@ -7,7 +7,7 @@ import DetailsScreen from "../screens/DetailsScreen";
 
 export type RootStackParamList = {
   // Se till att TS känner till alla
-  Home: NavigatorScreenParams<TabParamList>;
+  HomeNav: NavigatorScreenParams<TabParamList>;
   Details: { id: string };
 };
 
@@ -17,13 +17,14 @@ export default function RootStackNavigator() {
   return (
     <RootStack.Navigator>
       <RootStack.Screen
-        name="Home"
+        name="HomeNav"
         component={TabNavigator}
         options={{ headerShown: false }}
       />
       <RootStack.Screen
         name="Details"
         component={DetailsScreen}
+        options={{ headerBackTitle: "Back" }}
       ></RootStack.Screen>
     </RootStack.Navigator>
   );
