@@ -9,19 +9,15 @@ import { Chord } from "./data";
 interface ContextValues {
   favorites: Chord[];
   setFavorites: (chords: Chord[]) => void;
-  clearStorage: () => void;
 }
 
 export const GlobalContext = createContext<ContextValues>({} as ContextValues);
 
 export default function App() {
-  const [favorites, setFavorites, clearStorage] = useAsyncStore<Chord[]>(
-    "favorites",
-    []
-  );
+  const [favorites, setFavorites] = useAsyncStore<Chord[]>("favorites", []);
 
   return (
-    <GlobalContext.Provider value={{ favorites, setFavorites, clearStorage }}>
+    <GlobalContext.Provider value={{ favorites, setFavorites }}>
       <NavigationContainer>
         <StatusBar style="auto" />
         <TabNavigator />

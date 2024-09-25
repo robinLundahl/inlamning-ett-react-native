@@ -18,16 +18,11 @@ import { GlobalContext } from "../App";
 type Props = NativeStackScreenProps<FavoriteStackParamList, "Tasty chords">;
 
 export default function FavoritesScreen(props: Props) {
-  const { favorites, setFavorites, clearStorage } = useContext(GlobalContext);
+  const { favorites, setFavorites } = useContext(GlobalContext);
 
   const removeFavorite = (id: string) => {
     const updatedFavorites = favorites.filter((chord) => chord.id !== id);
     setFavorites(updatedFavorites);
-  };
-
-  const clearList = () => {
-    clearStorage();
-    setFavorites([]);
   };
 
   const renderItem = ({ item }: { item: Chord }) => (
@@ -62,13 +57,8 @@ export default function FavoritesScreen(props: Props) {
           }}
         />
       ) : (
-        <Text style={styles.noFavoritesText}>
-          Inga favoriter tillagda ännu!
-        </Text>
+        <Text style={styles.noFavoritesText}>No favorite chords added.</Text>
       )}
-      <TouchableOpacity onPress={clearList}>
-        <Text>Rensa AsyncStorage</Text>
-      </TouchableOpacity>
     </View>
   );
 }
