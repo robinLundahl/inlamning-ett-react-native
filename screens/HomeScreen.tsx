@@ -30,7 +30,7 @@ export default function HomeScreen({ navigation }: any) {
         )}
         contentContainerStyle={{
           justifyContent: "space-between",
-          marginTop: 50,
+          marginTop: 60,
           paddingHorizontal: 10,
           paddingBottom: 20,
         }}

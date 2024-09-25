@@ -1,24 +1,34 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect, useState } from 'react';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from "react";
 
+// Modifierad hook för att hantera AsyncStorage med nyckelvärden
 export default function useAsyncStore<S>(key: string, initialValue: S) {
-    const [state, setState] = useState(initialValue);
+  const [state, setState] = useState(initialValue);
 
-    // Load data from async storage
-    useEffect(() => {
-        load();
-        async function load() {
-            const value = await AsyncStorage.getItem(key);
-            if(value) {
-                setState(JSON.parse(value));
+  // Ladda data från AsyncStorage
+  useEffect(() => {
+      async function load() {
+          const value = await AsyncStorage.getItem(key);
+          if (value) {
+              setState(JSON.parse(value));
             }
         }
-    }, [key]);
+        load();
+  }, [key]);
 
-    const storeState = (value: S) => {
-        setState(value);
-        AsyncStorage.setItem(key, JSON.stringify(value));
-    }
+  const storeState = async (value: S) => {
+    setState(value);
+    await AsyncStorage.setItem(key, JSON.stringify(value));
+  };
 
-    return [state, storeState] as const;
+  const clearStorage = async () => {
+  try {
+    await AsyncStorage.clear();
+  } catch (e) {
+    console.log('Fel vid rensning av AsyncStorage:', e);
+  }
+};
+
+  return [state, storeState, clearStorage] as const;
+  
 }

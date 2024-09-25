@@ -1,15 +1,32 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { createContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import TabNavigator from "./navigators/TabNavigator";
+import useAsyncStore from "./hooks/useAsyncStore";
+import { Chord } from "./data";
+
+interface ContextValues {
+  favorites: Chord[];
+  setFavorites: (chords: Chord[]) => void;
+  clearStorage: () => void;
+}
+
+export const GlobalContext = createContext<ContextValues>({} as ContextValues);
 
 export default function App() {
+  const [favorites, setFavorites, clearStorage] = useAsyncStore<Chord[]>(
+    "favorites",
+    []
+  );
+
   return (
-    <NavigationContainer>
-      <StatusBar style="auto" />
-      <TabNavigator />
-    </NavigationContainer>
+    <GlobalContext.Provider value={{ favorites, setFavorites, clearStorage }}>
+      <NavigationContainer>
+        <StatusBar style="auto" />
+        <TabNavigator />
+      </NavigationContainer>
+    </GlobalContext.Provider>
   );
 }
 
