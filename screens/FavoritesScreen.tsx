@@ -1,12 +1,4 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-  Image,
-} from "react-native";
-import useAsyncStore from "../hooks/useAsyncStore";
+import { View, Text, StyleSheet, FlatList, Image } from "react-native";
 import { Chord } from "../data";
 import React, { useContext, useState } from "react";
 import AudioFromSource from "../components/AudioFromSource";

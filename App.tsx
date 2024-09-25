@@ -3,9 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import TabNavigator from "./navigators/TabNavigator";
-import useAsyncStore from "./hooks/useAsyncStore";
-import { Chord } from "./data";
-import FavoritesProvider, { GlobalContext } from "./hooks/useContext";
+import FavoritesProvider from "./hooks/useContext";
 
 export default function App() {
   return (

@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Chord, chords } from "../data";
+import { chords } from "../data";
 import {
   Pressable,
   StyleSheet,
