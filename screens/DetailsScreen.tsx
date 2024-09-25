@@ -1,18 +1,12 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { chords } from "../data";
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import AudioFromSource from "../components/AudioFromSource";
 import { Image } from "expo-image";
 import { RootStackParamList } from "../navigators/HomeStackNavigator";
-import useAsyncStore from "../hooks/useAsyncStore";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { GlobalContext } from "../hooks/useContext";
+import Toast from "react-native-toast-message";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Details">;
 
@@ -31,7 +25,10 @@ export default function DetailsScreen({ route }: Props) {
       } else {
         const updatedFavorites = [...favorites, chord];
         setFavorites(updatedFavorites);
-        alert("The chord was added to favorites");
+        Toast.show({
+          type: "success",
+          text1: "Successfully added the chord!",
+        });
         console.log(updatedFavorites);
       }
     }
