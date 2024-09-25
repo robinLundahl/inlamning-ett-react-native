@@ -30,8 +30,9 @@ export default function HomeScreen({ navigation }: any) {
         )}
         contentContainerStyle={{
           justifyContent: "space-between",
-          marginTop: 100,
+          marginTop: 50,
           paddingHorizontal: 10,
+          paddingBottom: 20,
         }}
         columnWrapperStyle={{
           justifyContent: "space-between", // Sprider ut kolumnerna horisontellt

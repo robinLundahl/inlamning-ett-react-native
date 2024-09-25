@@ -25,7 +25,7 @@ export default function DetailsScreen({ route }: Props) {
       {chord?.audio && <AudioFromSource audio={chord.audio} />}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => alert("button was pressed!")}
+        onPress={(item) => alert("button was pressed!")}
       >
         <Text style={styles.buttonText}>Add to Favorites</Text>
       </TouchableOpacity>

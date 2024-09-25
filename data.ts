@@ -90,7 +90,6 @@ export const chords: Chord[] = [
     image: "https://chordbank.com/cb4dg/grumpy_isa_3_750.png",
     audio:  require("./assets/Gm.wav"),
   },
-
 ]
 
 
