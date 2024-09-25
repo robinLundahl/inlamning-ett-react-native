@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { View, StyleSheet, Button } from "react-native";
 import { Audio } from "expo-av";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 interface AudioFromSourceProps {
   audio: any;
@@ -36,8 +37,20 @@ export default function AudioFromSource({ audio }: AudioFromSourceProps) {
 
   return (
     <View style={styles.container}>
-      <Button title="Play Sound" onPress={playSound} />
-      <Button title="Stop Sound" onPress={stopSound} />
+      {/* <Button title="Play Sound" onPress={playSound} /> */}
+      <MaterialCommunityIcons
+        name="play"
+        size={46}
+        color="skyblue"
+        onPress={playSound}
+      />
+      <MaterialCommunityIcons
+        name="stop"
+        size={46}
+        color="skyblue"
+        onPress={stopSound}
+      />
+      {/* <Button title="Stop Sound" onPress={stopSound} /> */}
     </View>
   );
 }
@@ -45,7 +58,9 @@ export default function AudioFromSource({ audio }: AudioFromSourceProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "row",
     justifyContent: "flex-start",
-    padding: 10,
+    padding: 20,
+    gap: 20,
   },
 });

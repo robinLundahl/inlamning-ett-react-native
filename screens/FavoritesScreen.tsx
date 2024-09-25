@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#ddd",
