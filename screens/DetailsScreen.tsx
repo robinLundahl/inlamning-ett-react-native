@@ -24,10 +24,10 @@ export default function DetailsScreen({ route }: Props) {
       <Image source={chord?.image} style={{ height: 200, width: 200 }}></Image>
       {chord?.audio && <AudioFromSource audio={chord.audio} />}
       <TouchableOpacity
-        style={styles.pick}
+        style={styles.button}
         onPress={() => alert("button was pressed!")}
       >
-        <Text style={styles.text}>Add to Favorites</Text>
+        <Text style={styles.buttonText}>Add to Favorites</Text>
       </TouchableOpacity>
     </View>
   );
@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  pick: {
+  button: {
     marginBottom: 20,
     borderStyle: "solid",
     backgroundColor: "skyblue",
@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     alignItems: "flex-start",
     borderRadius: 5,
   },
-  text: {
+  buttonText: {
     fontSize: 16,
     fontWeight: "bold",
   },
