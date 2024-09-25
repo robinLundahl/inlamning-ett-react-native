@@ -1,10 +1,9 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../navigators/RootStackNavigator";
 import { chords } from "../data";
 import { StyleSheet, Text, View } from "react-native";
-import { Audio } from "expo-av";
 import AudioFromSource from "../components/AudioFromSource";
 import { Image } from "expo-image";
+import { RootStackParamList } from "../navigators/HomeStackNavigator";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Details">;
 

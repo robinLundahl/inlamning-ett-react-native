@@ -9,17 +9,11 @@ import {
 } from "react-native";
 import { chords } from "../data";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../navigators/RootStackNavigator";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { TabParamList } from "../navigators/TabNavigator";
+// import { TabParamList } from "../navigators/TabNavigator";
 
-type HomeProps = CompositeScreenProps<
-  BottomTabScreenProps<TabParamList, "Home">,
-  NativeStackScreenProps<RootStackParamList>
->;
-
-export function HomeScreen({ navigation }: HomeProps) {
+export default function HomeScreen({ navigation }: any) {
   return (
     <View style={s.container}>
       <FlatList
@@ -36,6 +30,7 @@ export function HomeScreen({ navigation }: HomeProps) {
         )}
         contentContainerStyle={{
           justifyContent: "space-between",
+          marginTop: 100,
           paddingHorizontal: 10,
         }}
         columnWrapperStyle={{

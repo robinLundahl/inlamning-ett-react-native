@@ -2,13 +2,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import RootStackNavigator from "./navigators/RootStackNavigator";
+import TabNavigator from "./navigators/TabNavigator";
 
 export default function App() {
   return (
     <NavigationContainer>
       <StatusBar style="auto" />
-      <RootStackNavigator />
+      <TabNavigator />
     </NavigationContainer>
   );
 }
