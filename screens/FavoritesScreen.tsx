@@ -13,7 +13,7 @@ import AudioFromSource from "../components/AudioFromSource";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FavoriteStackParamList } from "../navigators/FavoritesStackNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { GlobalContext } from "../App";
+import { GlobalContext } from "../hooks/useContext";
 
 type Props = NativeStackScreenProps<FavoriteStackParamList, "Tasty chords">;
 
