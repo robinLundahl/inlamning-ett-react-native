@@ -46,7 +46,7 @@ export default function DetailsScreen({ route }: Props) {
   );
 }
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
@@ -58,8 +58,6 @@ export const styles = StyleSheet.create({
     borderStyle: "solid",
     backgroundColor: "skyblue",
     padding: 20,
-    justifyContent: "center",
-    alignItems: "flex-start",
     borderRadius: 5,
   },
   buttonText: {

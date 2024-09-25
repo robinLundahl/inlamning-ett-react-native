@@ -19,18 +19,20 @@ export default function FavoritesScreen(props: Props) {
 
   const renderItem = ({ item }: { item: Chord }) => (
     <View style={styles.item}>
-      <Text style={styles.title}>Chord: {item.title}</Text>
-      <Image
-        source={{ uri: item.image }}
-        style={{ height: 100, width: 100 }}
-      ></Image>
-      {item?.audio && <AudioFromSource audio={item.audio} />}
-      <MaterialCommunityIcons
-        name="delete"
-        size={24}
-        color="black"
-        onPress={() => removeFavorite(item.id)}
-      />
+      <View style={styles.box}>
+        <Text style={styles.title}>Chord: {item.title}</Text>
+        <Image
+          source={{ uri: item.image }}
+          style={{ height: 100, width: 100 }}
+        ></Image>
+        {item?.audio && <AudioFromSource audio={item.audio} />}
+        <MaterialCommunityIcons
+          name="delete"
+          size={24}
+          color="black"
+          onPress={() => removeFavorite(item.id)}
+        />
+      </View>
     </View>
   );
   console.log(favorites);
@@ -43,10 +45,12 @@ export default function FavoritesScreen(props: Props) {
           data={favorites}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
-          contentContainerStyle={{
-            justifyContent: "space-around",
-            paddingBottom: 20,
-          }}
+          // contentContainerStyle={{
+          //   flexDirection: "column",
+          //   justifyContent: "space-around",
+          //   alignContent: "space-between",
+          //   paddingBottom: 20,
+          // }}
         />
       ) : (
         <Text style={styles.noFavoritesText}>No favorite chords added.</Text>
@@ -67,9 +71,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   item: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-evenly",
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#ddd",
@@ -80,5 +81,11 @@ const styles = StyleSheet.create({
   noFavoritesText: {
     fontSize: 16,
     color: "gray",
+  },
+  box: {
+    justifyContent: "space-around",
+    alignItems: "center",
+    flexDirection: "row",
+    // backgroundColor: "pink",
   },
 });

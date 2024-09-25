@@ -10,17 +10,17 @@ import { chords } from "../data";
 
 export default function HomeScreen({ navigation }: any) {
   return (
-    <View style={s.container}>
+    <View style={styles.container}>
       <FlatList
         data={chords}
         numColumns={2}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <TouchableOpacity
-            style={s.button}
+            style={styles.button}
             onPress={() => navigation.navigate("Details", { id: item.id })}
           >
-            <Text style={s.buttonText}>{item.title}</Text>
+            <Text style={styles.buttonText}>{item.title}</Text>
           </TouchableOpacity>
         )}
         contentContainerStyle={{
@@ -38,7 +38,7 @@ export default function HomeScreen({ navigation }: any) {
   );
 }
 
-const s = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
