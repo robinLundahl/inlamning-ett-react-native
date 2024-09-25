@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -8,10 +8,6 @@ import {
   Text,
 } from "react-native";
 import { chords } from "../data";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { CompositeScreenProps } from "@react-navigation/native";
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-// import { TabParamList } from "../navigators/TabNavigator";
 
 export default function HomeScreen({ navigation }: any) {
   return (

@@ -11,7 +11,7 @@ import AudioFromSource from "../components/AudioFromSource";
 import { Image } from "expo-image";
 import { RootStackParamList } from "../navigators/HomeStackNavigator";
 import useAsyncStore from "../hooks/useAsyncStore";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { GlobalContext } from "../hooks/useContext";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Details">;
