@@ -20,11 +20,10 @@ export default function FavoritesScreen(props: Props) {
   const renderItem = ({ item }: { item: Chord }) => (
     <View style={styles.item}>
       <View style={styles.box}>
-        <Text style={styles.title}>Chord: {item.title}</Text>
-        <Image
-          source={{ uri: item.image }}
-          style={{ height: 100, width: 100 }}
-        ></Image>
+        <View style={styles.infoContainer}>
+          <Text style={styles.title}>Chord: {item.title}</Text>
+          <Image source={{ uri: item.image }} style={styles.image} />
+        </View>
         {item?.audio && <AudioFromSource audio={item.audio} />}
         <MaterialCommunityIcons
           name="delete"
@@ -35,7 +34,6 @@ export default function FavoritesScreen(props: Props) {
       </View>
     </View>
   );
-  console.log(favorites);
 
   return (
     <View style={styles.container}>
@@ -45,12 +43,6 @@ export default function FavoritesScreen(props: Props) {
           data={favorites}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
-          // contentContainerStyle={{
-          //   flexDirection: "column",
-          //   justifyContent: "space-around",
-          //   alignContent: "space-between",
-          //   paddingBottom: 20,
-          // }}
         />
       ) : (
         <Text style={styles.noFavoritesText}>No favorite chords added.</Text>
@@ -74,18 +66,31 @@ const styles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#ddd",
+    marginBottom: 10, // Adds spacing between items
+  },
+  box: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  image: {
+    height: 100,
+    width: 100,
+    borderRadius: 5, // Optional, to give rounded corners
+    marginRight: 10, // Adds spacing between image and text
+  },
+  infoContainer: {
+    flex: 1,
+    alignItems: "center",
   },
   title: {
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 5,
+    marginRight: 15,
   },
   noFavoritesText: {
     fontSize: 16,
     color: "gray",
-  },
-  box: {
-    justifyContent: "space-around",
-    alignItems: "center",
-    flexDirection: "row",
-    // backgroundColor: "pink",
+    textAlign: "center",
   },
 });
