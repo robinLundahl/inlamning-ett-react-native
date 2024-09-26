@@ -30,8 +30,8 @@ export default function HomeScreen({ navigation }: any) {
           paddingBottom: 20,
         }}
         columnWrapperStyle={{
-          justifyContent: "space-between", // Sprider ut kolumnerna horisontellt
-          marginBottom: 20, // Vertikalt mellanrum mellan raderna
+          justifyContent: "space-between",
+          marginBottom: 20,
         }}
       />
     </View>
@@ -46,15 +46,15 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    backgroundColor: "skyblue", // Rosa bakgrund
+    backgroundColor: "skyblue",
     padding: 20,
-    margin: 10, // Marginal runt varje knapp för att skapa mer utrymme
-    borderRadius: 5, // Runda hörn
+    margin: 10,
+    borderRadius: 5,
     alignItems: "center",
     justifyContent: "center",
   },
   buttonText: {
-    color: "black", // Textfärg
+    color: "black",
     fontSize: 16,
     fontWeight: "bold",
   },
