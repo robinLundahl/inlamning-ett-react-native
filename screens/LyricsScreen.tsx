@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { useState } from "react";
 
@@ -33,9 +34,7 @@ export default function LyricsScreen() {
       console.log(json);
     } catch (error) {
       console.error(error);
-      setErrorMessage(
-        "We don't have that shitty song in our database, do better."
-      );
+      setErrorMessage("We don't have that song in our database, do better.");
     }
   }
 
@@ -48,51 +47,55 @@ export default function LyricsScreen() {
       Keyboard.dismiss();
     } else {
       console.error("Both artist and title are required");
-      setErrorMessage("Both artist and title are required."); // Felmeddelande för tomma fält
+      setErrorMessage("Both artist and title are required.");
     }
   };
 
   return (
-    <View style={styles.box}>
-      <View>
-        <TextInput
-          style={styles.input}
-          placeholder="Artist..."
-          value={artist}
-          onChangeText={setArtist}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Song..."
-          value={title}
-          onChangeText={setTitle}
-        />
-      </View>
-      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>Search for a song</Text>
-      </TouchableOpacity>
-      {errorMessage ? ( // Visa felmeddelandet om det finns
-        <Text style={styles.errorText}>{errorMessage}</Text>
-      ) : null}
-      <View style={styles.lyricsContainer}>
-        {songTitle ? ( // Rendera låtens titel
-          <Text style={styles.songTitleText}>{songTitle}</Text>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <ScrollView
+        style={styles.box}
+        contentContainerStyle={styles.contentContainer}
+      >
+        <View>
+          <TextInput
+            style={styles.input}
+            placeholder="Artist..."
+            value={artist}
+            onChangeText={setArtist}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Song..."
+            value={title}
+            onChangeText={setTitle}
+          />
+        </View>
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <Text style={styles.buttonText}>Search for a song</Text>
+        </TouchableOpacity>
+        {errorMessage ? (
+          <Text style={styles.errorText}>{errorMessage}</Text>
         ) : null}
-        {lyrics ? (
-          <ScrollView>
-            <Text style={styles.lyricsText}>{lyrics}</Text>
-          </ScrollView>
-        ) : null}
-      </View>
-    </View>
+        <View style={styles.lyricsContainer}>
+          {songTitle ? (
+            <Text style={styles.songTitleText}>{songTitle}</Text>
+          ) : null}
+          {lyrics ? <Text style={styles.lyricsText}>{lyrics}</Text> : null}
+        </View>
+      </ScrollView>
+    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
   box: {
     flex: 1,
-    alignItems: "center",
     padding: 20,
+  },
+  contentContainer: {
+    alignItems: "center",
+    paddingBottom: 20,
   },
   input: {
     height: 40,

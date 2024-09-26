@@ -16,6 +16,8 @@ Använda React-Native komponenter:
 - TouchableOpacity
 - FlatList
 - Image
+- TouchableWithoutFeedback
+- Keyboard
 - (Toast)
 - (useEffect, useState, useContext)
 
