@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  Keyboard,
 } from "react-native";
 import { useState } from "react";
 
@@ -16,6 +17,8 @@ export default function LyricsScreen() {
   const [artist, setArtist] = useState("");
   const [title, setTitle] = useState("");
   const [lyrics, setLyrics] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [songTitle, setSongTitle] = useState("");
 
   async function getData(artist: string, title: string) {
     const url = `https://api.lyrics.ovh/v1/${artist}/${title}`;
@@ -24,12 +27,15 @@ export default function LyricsScreen() {
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
-
       const json = await response.json();
-      console.log(json);
       setLyrics(json.lyrics);
+      setSongTitle(title);
+      console.log(json);
     } catch (error) {
-      console.error();
+      console.error(error);
+      setErrorMessage(
+        "We don't have that shitty song in our database, do better."
+      );
     }
   }
 
@@ -38,8 +44,11 @@ export default function LyricsScreen() {
       getData(artist, title);
       setArtist("");
       setTitle("");
+      setLyrics("");
+      Keyboard.dismiss();
     } else {
       console.error("Both artist and title are required");
+      setErrorMessage("Both artist and title are required."); // Felmeddelande för tomma fält
     }
   };
 
@@ -50,23 +59,31 @@ export default function LyricsScreen() {
           style={styles.input}
           placeholder="Artist..."
           value={artist}
-          onChangeText={setArtist} // Uppdaterar artist state när användaren skriver
+          onChangeText={setArtist}
         />
         <TextInput
           style={styles.input}
           placeholder="Song..."
           value={title}
-          onChangeText={setTitle} // Uppdaterar title state när användaren skriver
+          onChangeText={setTitle}
         />
       </View>
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Search for a song</Text>
       </TouchableOpacity>
-      {lyrics ? (
-        <ScrollView style={styles.lyricsContainer}>
-          <Text style={styles.lyricsText}>{lyrics}</Text>
-        </ScrollView>
+      {errorMessage ? ( // Visa felmeddelandet om det finns
+        <Text style={styles.errorText}>{errorMessage}</Text>
       ) : null}
+      <View style={styles.lyricsContainer}>
+        {songTitle ? ( // Rendera låtens titel
+          <Text style={styles.songTitleText}>{songTitle}</Text>
+        ) : null}
+        {lyrics ? (
+          <ScrollView>
+            <Text style={styles.lyricsText}>{lyrics}</Text>
+          </ScrollView>
+        ) : null}
+      </View>
     </View>
   );
 }
@@ -111,5 +128,17 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: "center",
     marginBottom: 20,
+  },
+  errorText: {
+    color: "red",
+    fontWeight: "bold",
+    marginTop: 10,
+  },
+  songTitleText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginVertical: 10,
+    textAlign: "center",
+    padding: 10,
   },
 });
