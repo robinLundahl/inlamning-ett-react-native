@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, FlatList, Image } from "react-native";
 import { Chord } from "../data";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import AudioFromSource from "../components/AudioFromSource";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FavoriteStackParamList } from "../navigators/FavoritesStackNavigator";
