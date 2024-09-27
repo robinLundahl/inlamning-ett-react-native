@@ -37,7 +37,7 @@ export default function LyricsScreen() {
     } catch (error) {
       console.error(error);
       setErrorMessage(
-        "We don't have that song in our database, please try again."
+        "We don't have that shitty song in our database, do better."
       );
     } finally {
       setIsLoading(false);
