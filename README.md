@@ -30,5 +30,19 @@ Använda Expo komponenter:
 - StatusBar
 - AsyncStorage
 
-info om hur projektet byggs och körs samt vilka krav som är uppfyllda. Kom ihåg att .git
-mappen måste finnas så jag kan hitta till ditt publika repo.
+Krav för godkänt:
+[x] Projektet använder minst 4 stycken RN-komponenter och minst 4 stycken Expo
+komponenter.
+[x] De utvalda komponenterna MÅSTE antecknas i README filen tillsammans med en
+lista över genomförda krav.
+[x] React Navigation används för att skapa en bättre upplevelse i appen.
+[x] Git & GitHub har använts
+[x] Projektmappen innehåller en README.md fil - (läs ovan för mer info)
+[x] Uppgiften lämnas in i tid!
+[x] Muntlig presentation är genomförd
+Krav för väl godkänt:
+[x] Alla punkter för godkänt är uppfyllda
+[x] Ytterligare en valfri extern modul används i projektet (ex. react-hook-form).
+[x] Appen ska prata med ett Web-API för att hämta data.
+[] Appen ska förberedas för lansering till en Appstore (Deadline samma dag som kursen
+slutar)
