@@ -18,6 +18,7 @@ Använda React-Native komponenter:
 - Image
 - TouchableWithoutFeedback
 - Keyboard
+- ActivityIndicator
 - (Toast)
 - (useEffect, useState, useContext)
 
