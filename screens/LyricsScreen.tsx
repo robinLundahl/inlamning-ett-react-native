@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Keyboard,
-  TouchableWithoutFeedback,
+  ActivityIndicator,
 } from "react-native";
 import { useState } from "react";
 
@@ -20,9 +20,11 @@ export default function LyricsScreen() {
   const [lyrics, setLyrics] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [songTitle, setSongTitle] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   async function getData(artist: string, title: string) {
     const url = `https://api.lyrics.ovh/v1/${artist}/${title}`;
+    setIsLoading(true);
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -34,7 +36,11 @@ export default function LyricsScreen() {
       console.log(json);
     } catch (error) {
       console.error(error);
-      setErrorMessage("We don't have that song in our database, do better.");
+      setErrorMessage(
+        "We don't have that song in our database, please try again."
+      );
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -44,6 +50,8 @@ export default function LyricsScreen() {
       setArtist("");
       setTitle("");
       setLyrics("");
+      setSongTitle("");
+      setErrorMessage("");
       Keyboard.dismiss();
     } else {
       console.error("Both artist and title are required");
@@ -52,39 +60,51 @@ export default function LyricsScreen() {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <ScrollView
-        style={styles.box}
-        contentContainerStyle={styles.contentContainer}
+    <ScrollView
+      style={styles.box}
+      contentContainerStyle={styles.contentContainer}
+    >
+      <View>
+        <TextInput
+          style={styles.input}
+          placeholder="Artist..."
+          value={artist}
+          onChangeText={setArtist}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Song..."
+          value={title}
+          onChangeText={setTitle}
+        />
+      </View>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          handleSubmit();
+        }}
       >
-        <View>
-          <TextInput
-            style={styles.input}
-            placeholder="Artist..."
-            value={artist}
-            onChangeText={setArtist}
+        <Text style={styles.buttonText}>Search for a song</Text>
+      </TouchableOpacity>
+      <View>
+        {isLoading ? (
+          <ActivityIndicator
+            size="large"
+            color="skyblue"
+            style={{ marginTop: 20 }}
           />
-          <TextInput
-            style={styles.input}
-            placeholder="Song..."
-            value={title}
-            onChangeText={setTitle}
-          />
-        </View>
-        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-          <Text style={styles.buttonText}>Search for a song</Text>
-        </TouchableOpacity>
-        {errorMessage ? (
+        ) : errorMessage ? (
           <Text style={styles.errorText}>{errorMessage}</Text>
-        ) : null}
-        <View style={styles.lyricsContainer}>
-          {songTitle ? (
-            <Text style={styles.songTitleText}>{songTitle}</Text>
-          ) : null}
-          {lyrics ? <Text style={styles.lyricsText}>{lyrics}</Text> : null}
-        </View>
-      </ScrollView>
-    </TouchableWithoutFeedback>
+        ) : (
+          <View style={styles.lyricsContainer}>
+            {songTitle ? (
+              <Text style={styles.songTitleText}>{songTitle}</Text>
+            ) : null}
+            {lyrics ? <Text style={styles.lyricsText}>{lyrics}</Text> : null}
+          </View>
+        )}
+      </View>
+    </ScrollView>
   );
 }
 
@@ -121,9 +141,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 20,
     padding: 10,
-    borderWidth: 1,
-    borderColor: "lightgray",
-    borderRadius: 5,
+    // borderWidth: 1,
+    // borderColor: "lightgray",
+    // borderRadius: 5,
     width: "100%",
   },
   lyricsText: {
