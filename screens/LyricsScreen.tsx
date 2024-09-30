@@ -54,7 +54,6 @@ export default function LyricsScreen() {
       setErrorMessage("");
       Keyboard.dismiss();
     } else {
-      console.error("Both artist and title are required");
       setErrorMessage("Both artist and title are required.");
     }
   };
