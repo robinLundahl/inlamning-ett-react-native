@@ -9,6 +9,7 @@ import {
   ScrollView,
   Keyboard,
   ActivityIndicator,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { useState } from "react";
 
@@ -59,51 +60,54 @@ export default function LyricsScreen() {
   };
 
   return (
-    <ScrollView
-      style={styles.box}
-      contentContainerStyle={styles.contentContainer}
-    >
-      <View>
-        <TextInput
-          style={styles.input}
-          placeholder="Artist..."
-          value={artist}
-          onChangeText={setArtist}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Song..."
-          value={title}
-          onChangeText={setTitle}
-        />
-      </View>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          handleSubmit();
-        }}
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <ScrollView
+        keyboardShouldPersistTaps={"handled"}
+        style={styles.box}
+        contentContainerStyle={styles.contentContainer}
       >
-        <Text style={styles.buttonText}>Search for a song</Text>
-      </TouchableOpacity>
-      <View>
-        {isLoading ? (
-          <ActivityIndicator
-            size="large"
-            color="skyblue"
-            style={{ marginTop: 20 }}
+        <View>
+          <TextInput
+            style={styles.input}
+            placeholder="Artist..."
+            value={artist}
+            onChangeText={setArtist}
           />
-        ) : errorMessage ? (
-          <Text style={styles.errorText}>{errorMessage}</Text>
-        ) : (
-          <View style={styles.lyricsContainer}>
-            {songTitle ? (
-              <Text style={styles.songTitleText}>{songTitle}</Text>
-            ) : null}
-            {lyrics ? <Text style={styles.lyricsText}>{lyrics}</Text> : null}
-          </View>
-        )}
-      </View>
-    </ScrollView>
+          <TextInput
+            style={styles.input}
+            placeholder="Song..."
+            value={title}
+            onChangeText={setTitle}
+          />
+        </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            handleSubmit();
+          }}
+        >
+          <Text style={styles.buttonText}>Search for a song</Text>
+        </TouchableOpacity>
+        <View>
+          {isLoading ? (
+            <ActivityIndicator
+              size="large"
+              color="skyblue"
+              style={{ marginTop: 20 }}
+            />
+          ) : errorMessage ? (
+            <Text style={styles.errorText}>{errorMessage}</Text>
+          ) : (
+            <View style={styles.lyricsContainer}>
+              {songTitle ? (
+                <Text style={styles.songTitleText}>{songTitle}</Text>
+              ) : null}
+              {lyrics ? <Text style={styles.lyricsText}>{lyrics}</Text> : null}
+            </View>
+          )}
+        </View>
+      </ScrollView>
+    </TouchableWithoutFeedback>
   );
 }
 
