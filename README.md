@@ -11,25 +11,25 @@ Info om projektet:
 
 Använda React-Native komponenter:
 
-- View
-- StyleSheet
-- Text
-- TouchableOpacity
-- FlatList
-- Image
-- TouchableWithoutFeedback
-- Keyboard
-- ActivityIndicator
-- (Toast)
+- View [ https://reactnative.dev/docs/view ]
+- StyleSheet [ https://reactnative.dev/docs/stylesheet ]
+- Text [ https://reactnative.dev/docs/text ]
+- TouchableOpacity [ https://reactnative.dev/docs/touchableopacity ]
+- FlatList [ https://reactnative.dev/docs/flatlist ]
+- Image [ https://reactnative.dev/docs/image ]
+- TouchableWithoutFeedback [ https://reactnative.dev/docs/touchablewithoutfeedback ]
+- Keyboard [ https://reactnative.dev/docs/keyboard ]
+- ActivityIndicator [ https://reactnative.dev/docs/activityindicator ]
+- (Toast) [ https://www.npmjs.com/package/react-native-toast-message ]
 - (useEffect, useState, useContext)
 
 Använda Expo komponenter:
 
-- MaterialCommunityIcons
-- Image
-- Audio
-- StatusBar
-- AsyncStorage
+- MaterialCommunityIcons [ https://docs.expo.dev/guides/icons/ ]
+- Image [ https://docs.expo.dev/versions/latest/sdk/image/ ]
+- Audio [ https://docs.expo.dev/versions/latest/sdk/audio/ ]
+- StatusBar [ https://docs.expo.dev/versions/latest/sdk/status-bar/ ]
+- AsyncStorage [ https://docs.expo.dev/versions/latest/sdk/async-storage/ ]
 
 Krav för godkänt:
 [x] Projektet använder minst 4 stycken RN-komponenter och minst 4 stycken Expo
