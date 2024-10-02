@@ -26,8 +26,13 @@ export default function LyricsScreen() {
   async function getData(artist: string, title: string) {
     const url = `https://api.lyrics.ovh/v1/${artist}/${title}`;
     setIsLoading(true);
+
     try {
-      const response = await fetch(url);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2000);
+      const response = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
+
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
@@ -36,7 +41,7 @@ export default function LyricsScreen() {
       setSongTitle(title);
       console.log(json);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       setErrorMessage(
         "We don't have that shitty song in our database, do better."
       );

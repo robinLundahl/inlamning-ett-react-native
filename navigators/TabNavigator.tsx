@@ -8,7 +8,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 export type TabParamList = {
   Home: undefined;
   Favorites: undefined;
-  Lyrics: undefined;
+  "Search lyrics": undefined;
 };
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -39,7 +39,7 @@ export default function TabNavigator() {
         }}
       />
       <Tab.Screen
-        name="Lyrics"
+        name="Search lyrics"
         component={LyricsStackScreen}
         options={{
           tabBarIcon: (props) => (
