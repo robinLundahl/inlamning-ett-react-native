@@ -12,16 +12,22 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { useState } from "react";
+import { useForm, Controller, Form } from "react-hook-form";
 
 type Props = NativeStackScreenProps<LyricsStackParamList, "Lyrics">;
 
+interface FormData {
+  artist: string;
+  title: string;
+}
+
 export default function LyricsScreen() {
-  const [artist, setArtist] = useState("");
-  const [title, setTitle] = useState("");
   const [lyrics, setLyrics] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [songTitle, setSongTitle] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const { control, handleSubmit, reset } = useForm<FormData>();
 
   async function getData(artist: string, title: string) {
     const url = `https://api.lyrics.ovh/v1/${artist}/${title}`;
@@ -39,24 +45,17 @@ export default function LyricsScreen() {
       const json = await response.json();
       setLyrics(json.lyrics);
       setSongTitle(title);
-      console.log(json);
     } catch (error) {
-      // console.error(error);
-      setErrorMessage(
-        "We don't have that shitty song in our database, do better."
-      );
+      setErrorMessage("We don't have that song in our database.");
     } finally {
       setIsLoading(false);
     }
   }
 
-  const handleSubmit = () => {
-    if (artist && title) {
-      getData(artist, title);
-      setArtist("");
-      setTitle("");
-      setLyrics("");
-      setSongTitle("");
+  const onSubmit = (data: FormData) => {
+    if (data.artist && data.title) {
+      getData(data.artist, data.title);
+      reset();
       setErrorMessage("");
       Keyboard.dismiss();
     } else {
@@ -72,27 +71,40 @@ export default function LyricsScreen() {
         contentContainerStyle={styles.contentContainer}
       >
         <View>
-          <TextInput
-            style={styles.input}
-            placeholder="Artist..."
-            value={artist}
-            onChangeText={setArtist}
+          <Controller
+            control={control}
+            name="artist"
+            defaultValue=""
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={styles.input}
+                placeholder="Artist..."
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
           />
-          <TextInput
-            style={styles.input}
-            placeholder="Song..."
-            value={title}
-            onChangeText={setTitle}
+          <Controller
+            control={control}
+            name="title"
+            defaultValue=""
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={styles.input}
+                placeholder="Title..."
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
           />
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handleSubmit(onSubmit)}
+          >
+            <Text style={styles.buttonText}>Get Lyrics</Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            handleSubmit();
-          }}
-        >
-          <Text style={styles.buttonText}>Search for a song</Text>
-        </TouchableOpacity>
+
         <View>
           {isLoading ? (
             <ActivityIndicator
@@ -135,7 +147,6 @@ const styles = StyleSheet.create({
   },
   button: {
     marginBottom: 20,
-    borderStyle: "solid",
     backgroundColor: "skyblue",
     padding: 20,
     borderRadius: 5,
@@ -144,18 +155,16 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     fontWeight: "bold",
+    color: "white",
+    textAlign: "center",
   },
   lyricsContainer: {
     flex: 1,
     marginTop: 20,
     padding: 10,
-    // borderWidth: 1,
-    // borderColor: "lightgray",
-    // borderRadius: 5,
     width: "100%",
   },
   lyricsText: {
-    flex: 1,
     fontSize: 14,
     textAlign: "center",
     marginBottom: 20,

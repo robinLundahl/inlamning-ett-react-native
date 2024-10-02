@@ -22,6 +22,7 @@ Använda React-Native komponenter:
 - ActivityIndicator [ https://reactnative.dev/docs/activityindicator ]
 - (Toast) [ https://www.npmjs.com/package/react-native-toast-message ]
 - (useEffect, useState, useContext)
+- React-hook-form
 
 Använda Expo komponenter:
 
