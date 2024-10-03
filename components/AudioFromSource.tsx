@@ -26,15 +26,6 @@ export default function AudioFromSource({ audio }: AudioFromSourceProps) {
     }
   }
 
-  useEffect(() => {
-    return sound
-      ? () => {
-          console.log("Unloading Sound");
-          sound.unloadAsync();
-        }
-      : undefined;
-  }, [sound]);
-
   return (
     <View style={styles.container}>
       {/* <Button title="Play Sound" onPress={playSound} /> */}
