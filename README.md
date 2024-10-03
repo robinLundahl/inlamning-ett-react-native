@@ -4,10 +4,11 @@ Beskrivning: Jag har byggt en app där man som användare kan se och lyssna på 
 
 Info om projektet:
 
-1. Clona ner det från Github.
-2. Kör en "npm install" för att få de paket som jag använder mig av i projektet.
-3. Man måste även ha en simulator (om du använder dig av Mac) för att kunna köra expo-appen och simulera en mobilvy i Iphone eller Android.
-4. Kör därefter igång projektet med "npm start", därefter tryck "i" föt att starta igång simulatorn.
+1. Clona ner projektet med följande command: git clone https://github.com/robinLundahl/inlamning-ett-react-native.git
+2. Navigera till projektmappen.
+3. Kör en "npm install" för att få de paket som jag använder mig av i projektet.
+4. Man måste även ha en simulator för att kunna köra expo-appen och simulera en mobilvy.
+5. Kör därefter igång projektet med "npm start", därefter tryck "i" föt att starta igång simulatorn.
 
 Använda React-Native komponenter:
 
